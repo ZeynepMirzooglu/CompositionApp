@@ -3,19 +3,22 @@
 <div>
   <app-header/>
   <div class="container">
-<Lifecycle v-if="showComponent"/>
+    <button class="btn btn-primary" @click="activeComp = Users">Kullanıcılar</button>
+    <button class="btn btn-secondary"  @click="activeComp = AddUser">Yeni Kullanıcı Ekle</button>
+   <component :is="activeComp"/>
   </div>
   <Footer/>
 </div>
 </template>
 <script setup>
-import { ref} from 'vue';
+import { ref,shallowRef} from 'vue';
 import Footer from '@/components/Fixed/Footer.vue';
-import Lifecycle from './components/Cycle/Lifecycle.vue';
+import Users from './components/User/Users.vue';
+import AddUser from './components/User/AddUser.vue';
 
-const showComponent = ref(true);
 
-setTimeout(()=>{showComponent.value = false;},4000);
+const activeComp= shallowRef(Users);
+
 </script>
 
 <style>
